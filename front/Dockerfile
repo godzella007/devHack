@@ -12,6 +12,7 @@ RUN npm install --legacy-peer-deps
 
 # Copy the current directory contents into the container at /usr/src/app
 COPY . .
+ENV  baseURL=http://20.204.237.134:5000/api
 
 # Build the app
 RUN npm run build
