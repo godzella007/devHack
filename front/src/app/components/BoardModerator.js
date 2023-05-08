@@ -36,7 +36,7 @@ const BoardModerator = () => {
         </Link>
         <ul >
                 <li><Link to={"/Profile"} className="nav-link">Profile</Link></li>
-                <li><Link to={"/EditProfile"} className="nav-link">Edit Profile</Link></li>
+                <li><Link to={"/TutorialList"} className="nav-link">Edit Profile</Link></li>
             </ul>
         </li>
         <li><Link to={"/add"} className="nav-link">

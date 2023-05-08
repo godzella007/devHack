@@ -22,13 +22,15 @@ import EditProfile from "./app/components/EditProfile";
 import Ajouter from "./app/components/Ajouter";
 import FormolairAcces from "./app/components/FormolairAcces";
 
+
 function App() {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [showUserBoard, setShowUserBoard] = useState(false);
+  const [infoProfil, setInfoProfil] = useState();
   const { user: currentUser } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-
+//useeffect appel userService.get(currenetUser.id) setProfil(res.data)
   const logOut = useCallback(() => {
     dispatch(logout());
   }, [dispatch]);
@@ -54,7 +56,7 @@ function App() {
   }, [currentUser, logOut]);
 
   return (
-    <>
+   
     <Router>
     <div id="main-wrapper">
     <div className="nav-header">
@@ -112,7 +114,7 @@ function App() {
                                    <a className="all-notification" href=";">See all notifications <i className="ti-arrow-end"></i></a>
                                  </div>
                                </li>
-                    
+                               {currentUser ? (
                                <li className="nav-item ps-3">
                                  <div className="dropdown header-profile2">
                                    <a className="nav-link" href=";" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -121,21 +123,54 @@ function App() {
                                          <img src="aymen.jpg" alt="" />
                                        </div>
                                        <div className="header-info">
-                                         <h6>Nom</h6>
+                                         <h6>{currentUser.username}</h6>
                                        </div>
                                      </div>
                                    </a>
-                                   <div className="dropdown-menu dropdown-menu-end" style={{}}>
+                                   <div className="dropdown-menu dropdown-menu-end" >
                                      <div className="card border-0 mb-0">
                                        <div className="card-header py-2">
                                          <div className="products">
                                            <img src="aymen.jpg" className="avatar avatar-md" alt="" />
                                            <div>
-                                             <h5>Nom</h5>
-                                             <span>Mail</span>	
+                                             <h5>{currentUser.username}</h5>
+                                             <span>{currentUser.mail}</span>	
                                            </div>
                                          </div>
                                        </div>
+                                       
+                                       
+                                      
+                                         
+                                                        <div className="card-footer px-0 py-2">
+                                      
+                                       <li className="nav-item">
+                <a href="/login" className="nav-link" >
+                  <button onClick={logOut} className="btn btn-outline-info" size="10px" >logOut</button>
+          
+                </a>
+              </li>
+												                
+                                  </div>
+									
+										</div>
+									</div>
+								</div>
+							</li>
+               ) : (
+              <li className="nav-item ps-3">
+                                 <div className="dropdown header-profile2">
+                                   <a className="nav-link" href=";" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <div className="header-info2 d-flex align-items-center">
+                                       
+                                       <div className="header-info">
+                                         <h6>Account</h6>
+                                       </div>
+                                     </div>
+                                   </a>
+                                   <div className="dropdown-menu dropdown-menu-end" >
+                                     <div className="card border-0 mb-0">
+                                    
                                        
                                        
                                       
@@ -152,21 +187,13 @@ function App() {
                          
 												                       </Link>
                                             </div>
-                                                        <div className="card-footer px-0 py-2">
-                                      
-                                       <li className="nav-item">
-                <a href="/login" className="nav-link" >
-                  <button onClick={logOut} className="btn btn-outline-info" size="10px" >logOut</button>
-          
-                </a>
-              </li>
-												                
-                                  </div>
+                                                 
 									
 										</div>
 									</div>
 								</div>
 							</li>
+                )}
                         </ul>
                         
                     </div>
@@ -187,8 +214,8 @@ function App() {
   )
 }
 
-</div>
-    <div className="container mt-3">
+
+  
       <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
@@ -207,10 +234,11 @@ function App() {
             <Route path="/hackathons" element={<Hackathons/>} />
             <Route path="/Ajouter" element={<Ajouter/>} />
             <Route path="/FormolairAcces" element={<FormolairAcces/>} />
+
             </Routes>
-         </div>
+            </div>
       </Router>
-    </>
+
   );
 }
 

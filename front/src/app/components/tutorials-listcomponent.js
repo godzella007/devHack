@@ -72,28 +72,20 @@ class TutorialsList extends Component {
     const { tutorials } = this.props;
 
     return (
+      <>
       <div className="content-body">
-      <div className="list row">
-        <div className="col-md-8">
-          <div className="input-group mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search by title"
-              value={searchTitle}
-              onChange={this.onChangeSearchTitle}
-            />
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.findByTitle}
-              >
-                Search
-              </button>
-            </div>
-          </div>
-        </div>
+        	<div className="page-titles">
+					<ol className="breadcrumb">
+						<li className=""><a href="">Hacktons --- /</a></li>
+						<li className="breadcrumb-item active"><a href="">list</a></li>
+					</ol>
+                </div>
+
+                <div className="container-fluid">
+                  
+                  
+                  <div className="list row">
+       
         <div className="col-md-6">
           <h4>List de ajouter </h4>
 
@@ -116,7 +108,95 @@ class TutorialsList extends Component {
          
         </div>
        
-        <div className="col-md-6">
+       
+   </div>
+                
+                
+                
+   <div className="element-area">
+					<div className="demo-view">
+						<div className="container-fluid pt-0 ps-0 pe-lg-0 pe-0">
+			
+						<div className="col-xl-12">
+							<div className="card dz-card" id="accordion-three">
+								<div className="card-header flex-wrap d-flex justify-content-between">
+                <div className="col-md-8">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search by title"
+              value={searchTitle}
+              onChange={this.onChangeSearchTitle}
+            />
+            <div className="input-group-append">
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={this.findByTitle}
+              >
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+								
+								</div>
+							   
+								
+									<div className="tab-content" id="myTabContent-2">
+										<div className="tab-pane fade show active" id="withoutSpace" role="tabpanel" aria-labelledby="home-tab-2">
+											 <div className="card-body pt-0">
+												<div className="table-responsive">
+													<table id="example3" className="display table">
+														<thead>
+															<tr>
+																<th></th>
+																<th>Name</th>
+																<th>Department</th>
+																<th>Gender</th>
+																
+																<th>Action</th>
+															</tr>
+														</thead>
+														<tbody>
+                            {tutorials &&
+              tutorials.map((tutorial, index) => (
+															<tr>
+																<td><img className="rounded-circle" width="35" src="images/profile/small/pic1.jpg" alt=""/></td>
+																<td> {tutorial.title}</td>
+																<td>  {tutorial.title}</td>
+																<td>{tutorial.title}</td>
+														
+																<td>
+																	<div className="d-flex">
+																		<a href={"/tutorials/" + tutorial.id} className="btn btn-primary shadow btn-xs sharp me-1"><i className="fas fa-pencil-alt"></i></a>
+																		<a href="#" className="btn btn-danger shadow btn-xs sharp"><i className="fa fa-trash"></i></a>
+																	</div>												
+																</td>												
+															</tr>
+														  ))}
+                            
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									
+									</div>
+							
+							   
+							</div>
+						</div>
+                   
+            </div>   				</div>       
+                
+
+
+</div>
+      
+  </div></div>
+  <div className="col-md-6">
           {currentTutorial ? (
            <div>
            <h4>hackathons ajouter</h4>
@@ -167,6 +247,7 @@ class TutorialsList extends Component {
          
 
            <Link
+           
              to={"/tutorials/" + currentTutorial.id}
              className="badge badge-warning"
            >
@@ -177,11 +258,13 @@ class TutorialsList extends Component {
        ) : (
          <div>
            <br />
+           
            <p>Please click on a Projet.</p>
          </div>
        )}
      </div>
-   </div></div>
+   </>
+      
  );
 }
 

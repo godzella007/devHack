@@ -10,6 +10,11 @@ class Tutorial extends Component {
     super(props);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeNumbre_Equipe = this.onChangeNumbre_Equipe.bind(this);
+    this.onChangeNomEntriprise = this.onChangeNomEntriprise.bind(this);
+    this.onChangeDate_début = this.onChangeDate_début.bind(this);
+    this.onChangeDate_fin = this.onChangeDate_fin.bind(this);
+    this.onChangeRules = this.onChangeRules.bind(this);
     this.getTutorial = this.getTutorial.bind(this);
     this.updateStatus = this.updateStatus.bind(this);
     this.updateContent = this.updateContent.bind(this);
@@ -20,6 +25,11 @@ class Tutorial extends Component {
         id: null,
         title: "",
         description: "",
+        Numbre_Equipe:"",
+        NomEntriprise:"",
+        Date_début:"",
+        Date_fin:"",
+        Rules:"",
         published: false,
       },
       message: "",
@@ -32,28 +42,77 @@ class Tutorial extends Component {
 
   onChangeTitle(e) {
     const title = e.target.value;
-
-    this.setState(function (prevState) {
-      return {
-        currentTutorial: {
-          ...prevState.currentTutorial,
-          title: title,
-        },
-      };
-    });
-  }
-
-  onChangeDescription(e) {
-    const description = e.target.value;
-
+  
     this.setState((prevState) => ({
       currentTutorial: {
         ...prevState.currentTutorial,
-        description: description,
+        title: title,
       },
     }));
   }
+  
 
+  onChangeDescription(e) {
+    const Description = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        description: Description,
+      },
+    }));
+  }
+  onChangeNomEntriprise(e) {
+    const NomEntriprise = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        NomEntriprise: NomEntriprise,
+      },
+    }));
+  }
+  onChangeNumbre_Equipe(e) {
+    const Numbre_Equipe = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        Numbre_Equipe: Numbre_Equipe,
+      },
+    }));
+  }
+  onChangeDate_début(e) {
+    const Date_début = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        Date_début: Date_début,
+      },
+    }));
+  }
+  onChangeDate_fin(e) {
+    const Date_fin = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        
+        Date_fin: Date_fin,
+      },
+    }));
+  }
+  onChangeRules(e) {
+    const Rules = e.target.value;
+  
+    this.setState((prevState) => ({
+      currentTutorial: {
+        ...prevState.currentTutorial,
+        Rules: Rules,
+      },
+    }));
+  }
   getTutorial(id) {
     TutorialDataService.get(id)
       .then((response) => {
@@ -139,79 +198,80 @@ class Tutorial extends Component {
                                             <div className="mb-3 col-md-6">
                 <label htmlFor="title">l'Entriprise</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="title"
-                  value={currentTutorial.NomEntriprise}
-                  onChange={this.onChangeNomEntriprise}
-                />
+  type="text"
+  className="form-control"
+  id="NomEntriprise"
+  value={this.state.currentTutorial.NomEntriprise}
+  onChange={this.onChangeNomEntriprise}
+/>
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor="description">Title de Projet</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="description"
-                  value={currentTutorial.title}
-                  onChange={this.onChangetitle}
-                />
+  type="text"
+  className="form-control"
+  id="title"
+  value={this.state.currentTutorial.title}
+  onChange={this.onChangeTitle}
+/>
+
               </div>
               </div>
               <div className="row">
-                                            <div className="mb-3 col-md-6">
+                 <div className="mb-3 col-md-6">
                 <label htmlFor="Numbre_Equipe">Numbre_Equipe</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="Numbre_Equipe"
-                  value={currentTutorial.Numbre_Equipe}
-                  onChange={this.onChangeNumbre_Equipe}
-                />
+  type="text"
+  className="form-control"
+  id="Numbre_Equipe"
+  value={this.state.currentTutorial.Numbre_Equipe}
+  onChange={this.onChangeNumbre_Equipe}
+/>
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor="NomEntriprise">Description de Projet</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="NomEntriprise"
-                  value={currentTutorial.description}
-                  onChange={this.onChangedescription}
-                />
+  type="text"
+  className="form-control"
+  id="description"
+  value={this.state.currentTutorial.description}
+  onChange={this.onChangeDescription}
+/>
               </div>
               </div>
               <div className="row">
                                             <div className="mb-3 col-md-6">
                 <label htmlFor="Date_début">Date_début</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="Date_début"
-                  value={currentTutorial.Date_début}
-                  onChange={this.onChangeDate_début}
-                />
+  type="Date"
+  className="form-control"
+  id="Date_debut"
+  value={this.state.currentTutorial.Date_début}
+  onChange={this.onChangeDate_début}
+/>
               </div>
               <div className="form-group col-md-6">
                 <label htmlFor=" Date_fin"> Date_fin</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id=" Date_fin"
-                  value={currentTutorial.Date_fin}
-                  onChange={this.onChangeDate_fin}
-                />
+  type="Date"
+  className="form-control"
+  id="Date_fin"
+  value={this.state.currentTutorial.Date_fin}
+  onChange={this.onChangeDate_fin}
+/>
               </div>
               </div>
               <div className="row">
                                             <div className="mb-3 col-md-6">
                 <label htmlFor="Rules"> Rules</label>
                 <input
-                  type="text"
-                  className="form-control"
-                  id="Rules"
-                  value={currentTutorial.Rules}
-                  onChange={this.onChangeRules}
-                />
-              </div>
+  type="text"
+  className="form-control"
+  id="Rules"
+  value={this.state.currentTutorial.Rules}
+  onChange={this.onChangeRules}
+/>              
+                         </div>
               </div>
               <div className="form-group col-md-6">
                 <label>
@@ -224,26 +284,7 @@ class Tutorial extends Component {
            
            </div>
 
-            {currentTutorial.published ? (
-              
-              <button
-              className="btn btn-warning"
-                onClick={() => this.updateStatus(false)}
-              >
-                UnPublish
-
-              </button>
-            ) : (
-
-              <button
-              className="btn btn-primary"
-                onClick={() => this.updateStatus(true)}
-              
-              >
-                Publish
-              </button>
-            )}
-
+        
             <button
             className="btn btn-danger"
               onClick={this.removeTutorial}
